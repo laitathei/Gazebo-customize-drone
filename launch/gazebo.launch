@@ -1,0 +1,44 @@
+ <?xnl version="1.0" encoding="UTF-8"?>
+
+<launch>
+	<!-- overwriting these args -->
+	<arg name="debug" default="false" />
+	<arg name="gui" default="true" />
+	<arg name="pause" default="true" />
+	<arg name="world" default="$(find drone_model)/world/empty_world.world" />
+
+	<!-- include gazebo_ros launcher -->
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(arg world)" />
+		<arg name="debug" value="$(arg debug)" />
+		<arg name="gui" value="$(arg gui)" />
+		<arg name="paused" value="$(arg pause)" />
+		<arg name="use_sim_time" value="true" />
+	</include>
+
+	<param name="robot_description" command="$(find xacro)/xacro --inorder '$(find drone_model)/urdf/drone_model_with_plugin.xacro'"/>
+
+	<arg name="controllers" default=" controller/position controller/velocity controller/attitude"/>
+
+	<!-- load controllers -->
+	<include file="$(find drone_model)/control/drone_controller.launch">
+		<arg name="controllers" value="$(arg controllers)"/>
+	</include>
+	
+	<node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args=" $(arg controllers) --shutdown-timeout 3"/>
+
+	<!-- start robot state publisher -->
+	<node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+		<param name="publish_frequency" type="double" value="50.0" />
+	</node>
+
+	<!-- load aerodynamic and motor parameters -->
+	<arg name="motors" default="robbe_2827-34_epp1045" />
+	<rosparam command="load" file="$(find drone_model)/param/drone_aerodynamics.yaml" />
+	<rosparam command="load" file="$(find drone_model)/param/$(arg motors).yaml" />
+
+	<node name="tf_footprint_base" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 base_link base_footprint 40" />
+	<node name="robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model drone_test "/>
+	<node name="fake_joint_calibration" pkg="rostopic" type="rostopic" args="pub /calibrated std_msgs/Bool true" />
+
+</launch>

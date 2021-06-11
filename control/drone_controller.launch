@@ -1,0 +1,19 @@
+ <?xnl version="1.0" encoding="UTF-8"?>
+ 
+<launch>
+
+  <!-- Order is important! -->
+  <arg name="controllers" default="
+    controller/position
+    controller/velocity
+    controller/attitude
+    "/>
+
+  <rosparam ns="controller" file="$(find drone_model)/control/drone_controller.yaml" />
+  <rosparam file="$(find drone_model)/control/drone_params.yaml" />
+
+  <node name="estop_relay" pkg="topic_tools" type="relay" args="/estop estop">
+    <param name="lazy" value="true" />
+  </node>
+
+</launch>
