@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<robot name="drone_test" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <xacro:include filename="$(find drone_model)/urdf/drone_plugins.gazebo.xacro" />
+    <xacro:include filename="$(find drone_model)/urdf/drone_model.xacro" />
+</robot>
+
