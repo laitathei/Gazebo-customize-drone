@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="world_frame" default="world"/>
+
+  <xacro:include filename="$(find drone_model)/urdf/drone_sensors.gazebo.xacro" />
+  <xacro:include filename="$(find drone_model)/urdf/drone_controller.gazebo.xacro" />
+  <xacro:include filename="$(find drone_model)/urdf/drone_proplusion.gazebo.xacro" />
+  <xacro:include filename="$(find drone_model)/urdf/drone_aerodynamics.gazebo.xacro" />
+
+  <!-- Quadrotor Gazebo Plugins -->
+  <xacro:drone_sensors />
+  <xacro:drone_controller />
+  <xacro:drone_propulsion />
+  <xacro:drone_aerodynamics />
+
+
+</robot>

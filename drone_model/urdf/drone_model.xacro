@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+     
+<robot name="drone_test" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <link name="Body">
+    <inertial>
+      <origin xyz="-0.132053887023907 0.170974105213661 0.172301006119099" rpy="0 0 0" />
+      <mass value="0.428880785184515" />
+      <inertia ixx="0.000572262303778292" ixy="-2.60585496057888E-05" ixz="2.8321248485113E-07" iyy="0.000750933942870594" iyz="7.11227235560249E-09" izz="0.00109323645237971" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/Body.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/Body.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <link name="anti-clockwise-front">
+    <inertial>
+      <origin xyz="4.26922057150669E-08 1.30033290135501E-07 0.0171342221881982" rpy="0 0 0" />
+      <mass value="0.00578301567549862" />
+      <inertia ixx="2.19297321285954E-06" ixy="-3.85185584678438E-07" ixz="4.92926400470329E-13" iyy="1.07618958223177E-06" iyz="2.95357508077207E-12" izz="2.89451378374848E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/anti-clockwise-front.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/anti-clockwise-front.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="anti-clockwise-front-joint" type="continuous">
+    <origin xyz="-0.263180221040741 -0.00535771656535831 0.194310207147912" rpy="0 0 -0.702921360219603" />
+    <parent link="Body" />
+    <child link="anti-clockwise-front" />
+  </joint>
+
+  <link name="anti-clockwise-back">
+    <inertial>
+      <origin xyz="1.22649345464521E-07 0.0171342231577895 -1.5043526813141E-08" rpy="0 0 0" />
+      <mass value="0.00578301628897223" />
+      <inertia ixx="9.57423445648343E-07" ixy="3.40486731204543E-12" ixz="4.02686042471731E-08" iyy="2.89451514548264E-06" iyz="-8.91843024705958E-14" izz="2.31174071028298E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/anti-clockwise-back.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/anti-clockwise-back.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="anti-clockwise-back-joint" type="continuous">
+    <origin xyz="0.00687243562347602 0.353921479670167 0.194310207147912" rpy="1.5707963267949 0 -3.12886657215198" />
+    <parent link="Body" />
+    <child link="anti-clockwise-back" />
+  </joint>
+  
+  <link name="clockwise-front">
+    <inertial>
+      <origin xyz="1.23317755562624E-07 0.0171342221871094 -1.77451845717602E-08" rpy="0 0 0" />
+      <mass value="0.0057830156750858" />
+      <inertia ixx="9.57423088598684E-07" ixy="3.38556139574804E-12" ixz="4.02693734770739E-08" iyy="2.89451378381386E-06" iyz="-3.8697642575689E-15" izz="2.31173970654585E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/clockwise-front.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/clockwise-front.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="clockwise-front-joint" type="continuous">
+    <origin xyz="-0.307793490826392 0.309308209884516 0.194310207147912" rpy="1.5707963267949 0 2.6414408705233" />
+    <parent link="Body" />
+    <child link="clockwise-front" />
+  </joint>
+
+  <link name="clockwise-back">
+    <inertial>
+      <origin xyz="1.27205995230362E-07 -0.0166622581215348 -2.28644006505796E-08" rpy="0 0 0" />
+      <mass
+        value="0.00578301567517889" />
+      <inertia ixx="9.57420867834833E-07" ixy="2.81403069702918E-12" ixz="4.02700243594539E-08" iyy="2.89451378365905E-06" iyz="-4.31313069323929E-13" izz="2.31174192715785E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://drone_model/meshes/clockwise-back.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry> <mesh filename="package://drone_model/meshes/clockwise-back.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="clockwise-back-joint" type="continuous">
+    <origin xyz="0.0514857054091275 0.0392555532202922 0.194310207147912" rpy="-1.5707963267949 0 2.92653809044825" />
+    <parent link="Body" />
+    <child link="clockwise-back" />
+  </joint>
+
+
+</robot>
